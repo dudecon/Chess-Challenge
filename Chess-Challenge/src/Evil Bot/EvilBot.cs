@@ -3,13 +3,12 @@ using System;
 
 namespace ChessChallenge.Example
 {
-    // A simple bot that can spot mate in one, and always captures the most valuable piece it can.
-    // Plays randomly otherwise.
+    // A simple bot that can spot mate in one, and looks one move ahead.
     public class EvilBot : IChessBot
     {
     // Piece values: null, pawn, knight, bishop, rook, queen, king
     int[] pieceValues = { 0, 100, 250, 300, 500, 900, 1000 };
-    int[] moveValues = { 0, 100, 90, 80, 85, 95, 70 };
+    int[] moveValues = { 0, 100, 90, 80, 85, 80, 70 };
 
     public Move Think(Board board, Timer timer)
     {
@@ -93,6 +92,13 @@ namespace ChessChallenge.Example
         }
         if (move.IsPromotion) { thisMoveValue += 800; }
         return thisMoveValue;
+    }
+
+    // Calculate the trade chain of this threatened move
+    int tradeValue(Board board, Move move)
+    {
+        int myPiecesLostValue  = 0;
+        int myPiecesNumber = 1;
     }
     }
 }
