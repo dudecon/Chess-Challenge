@@ -1,13 +1,11 @@
 ﻿using ChessChallenge.API;
 using System;
-using System.Collections.Generic;
-
 
 public class MyBot : IChessBot
 {
     // Piece values: null, pawn, knight, bishop, rook, queen, king
-    int[] pieceValues = { 0, 100, 250, 300, 500, 900, 10000 };
-    int[] moveValues = { 0, 100, 80, 85, 90, 95, 70 };
+    int[] pieceValues = { 0, 100, 270, 300, 500, 900, 10000 };
+    int[] moveValues = { 0, 100, 95, 82, 81, 80, 55 };
 
     public Move Think(Board board, Timer timer)
     {
@@ -31,7 +29,7 @@ public class MyBot : IChessBot
             {  continue; }
             // Evaluate the game state
             int thisMoveValue = moveValue(board, move) + rng.Next(50);
-            // Look ahead, and never play a move that will allow checkmate in one
+            // Look ahead one move, and incorporate the opponent's best move in the score
             board.MakeMove(move);
             Move[] opponentMoves = board.GetLegalMoves();
             bool isMate = false;
@@ -74,7 +72,7 @@ public class MyBot : IChessBot
         return isMate;
     }
 
-    // Calculate the approximate value of this move
+    // Calculate the approximate value of this board state for the current player
     int moveValue(Board board, Move move)
     {
         int thisMoveValue  = 0;
