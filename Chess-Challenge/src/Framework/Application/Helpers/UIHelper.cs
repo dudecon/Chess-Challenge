@@ -1,8 +1,8 @@
 ﻿using Raylib_cs;
 using System;
-using System.IO;
 using System.Linq;
 using System.Numerics;
+using static ChessChallenge.Application.FileHelper;
 
 namespace ChessChallenge.Application
 {
@@ -103,11 +103,6 @@ namespace ChessChallenge.Application
         {
             Vector2 mousePos = Raylib.GetMousePosition();
             return mousePos.X >= rec.x && mousePos.Y >= rec.y && mousePos.X <= rec.x + rec.width && mousePos.Y <= rec.y + rec.height;
-        }
-
-        public static string GetResourcePath(params string[] localPath)
-        {
-            return Path.Combine(Directory.GetCurrentDirectory(), "resources", Path.Combine(localPath));
         }
 
         public static float Scale(float val, int referenceResolution = referenceResolution)
