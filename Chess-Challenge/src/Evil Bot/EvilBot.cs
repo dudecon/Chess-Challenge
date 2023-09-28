@@ -94,11 +94,5 @@ namespace ChessChallenge.Example
         return thisMoveValue;
     }
 
-    // Calculate the trade chain of this threatened move
-    int tradeValue(Board board, Move move)
-    {
-        int myPiecesLostValue  = 0;
-        int myPiecesNumber = 1;
-    }
     }
 }

@@ -2,37 +2,6 @@
 using System;
 using System.Collections.Generic;
 
-public class MoveCache
-{
-    public Dictionary<string, int>       valueCacheByMove  = new Dictionary<string, int>();
-    // neat idea, but what about collisions?
-    // public Dictionary<int,    string>    moveCacheByValue  = new Dictionary<int,    string>();
-    public Dictionary<string, MoveCache> nestedCache;
-    public string[] sortedMoves;
-    public int bestMove = int.MinValue;
-
-    public bool TryGetValue(string key, int depth, out int value)
-    {
-        if (nestedCache.TryGetValue(depth, out var depthCache))
-        {
-            return depthCache.valueCache.TryGetValue(key, out value);
-        }
-        value = 0;
-        return false;
-    }
-
-    public void Add(string key, int depth, int value)
-    {
-        if (!nestedCache.TryGetValue(depth, out var depthCache))
-        {
-            depthCache = new MoveCache();
-            nestedCache[depth] = depthCache;
-        }
-
-        depthCache.cache[key] = value;
-    }
-}
-
 
 public class MyBot : IChessBot
 {
